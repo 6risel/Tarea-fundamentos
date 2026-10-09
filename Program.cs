@@ -30,18 +30,18 @@ namespace ejercicio1parrte2
             }
 
             string nombre;
-
+            bool IsNullOrWhiteSpace;
             do
             {
                 Console.Write("Ingresar nombre del estudiante: ");
                 nombre = Console.ReadLine();
-
-                if (string.IsNullOrWhiteSpace(nombre))
+                IsNullOrWhiteSpace = string.IsNullOrWhiteSpace(nombre);
+                if (IsNullOrWhiteSpace)
                 {
                     Console.WriteLine("Error. El nombre no puede estar vacío.");
                 }
 
-            } while (string.IsNullOrWhiteSpace(nombre));
+            } while (IsNullOrWhiteSpace);
 
             double nota;
 
