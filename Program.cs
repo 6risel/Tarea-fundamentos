@@ -1,10 +1,11 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
-using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ejercicio1parrte2
 {
@@ -29,19 +30,28 @@ namespace ejercicio1parrte2
                 return;
             }
 
-            string nombre;
-            bool IsNullOrWhiteSpace;
+            string nombre = "";
+            bool esValido = false;
+            string patron = @"^[A-Za-z ]+$";
+
             do
             {
                 Console.Write("Ingresar nombre del estudiante: ");
                 nombre = Console.ReadLine();
-                IsNullOrWhiteSpace = string.IsNullOrWhiteSpace(nombre);
-                if (IsNullOrWhiteSpace)
+
+                if (string.IsNullOrWhiteSpace(nombre))
                 {
                     Console.WriteLine("Error. El nombre no puede estar vacío.");
+                    continue; 
                 }
 
-            } while (IsNullOrWhiteSpace);
+                esValido = Regex.IsMatch(nombre, patron);
+                if (!esValido)
+                {
+                    Console.WriteLine("Error. El nombre solamente puede contener letras.");
+                }
+
+            } while (string.IsNullOrWhiteSpace(nombre) || !esValido);
 
             double nota;
 
@@ -55,13 +65,14 @@ namespace ejercicio1parrte2
                     break;
                 }
 
-                Console.WriteLine("Error. Ingrese una nota entre 0 y 20.");
+                Console.WriteLine("Error. Ingrese una nota numérica válida entre 0 y 20.");
             }
 
             nombres[contador] = nombre.Trim();
             notas[contador] = nota;
             contador++;
-            Console.WriteLine("Registro con éxito...!!");
+
+            Console.WriteLine("¡Registro con éxito...!!");
         }
 
         static public void buscar_estudiante()
