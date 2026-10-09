@@ -45,6 +45,12 @@ namespace ejercicio1parrte2
                     continue; 
                 }
 
+                if (nombre.Length > 50 || nombre.Length < 3)
+                {
+                    Console.WriteLine("Error. El nombre no puede tener más de 50 o menos de 3caracteres.");
+                    continue;   
+                }
+
                 esValido = Regex.IsMatch(nombre, patron);
                 if (!esValido)
                 {
